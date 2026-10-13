@@ -7,7 +7,7 @@ import core.basesyntax.strategy.OperationHandler;
 public class PurchaseOperation implements OperationHandler {
     @Override
     public void handle(FruitTransaction transaction) {
-        int current = Storage.fruits.getOrDefault(transaction.getFruit(), 0);
+        int current = Storage.getFruits().getOrDefault(transaction.getFruit(), 0);
         int remaining = current - transaction.getQuantity();
 
         if (remaining < 0) {
@@ -20,6 +20,6 @@ public class PurchaseOperation implements OperationHandler {
                             + transaction.getQuantity()
             );
         }
-        Storage.fruits.put(transaction.getFruit(), remaining);
+        Storage.getFruits().put(transaction.getFruit(), remaining);
     }
 }
